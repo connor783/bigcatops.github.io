@@ -153,8 +153,8 @@
       radial-gradient(ellipse 45% 50% at 0% 100%, rgba(146, 1, 203, 0.16), transparent 70%),
       var(--bg-band); }
   #about { background:
-      radial-gradient(ellipse 42% 70% at 86% 45%, rgba(247, 21, 171, 0.20), transparent 70%),
-      radial-gradient(ellipse 45% 65% at 0% 100%, rgba(52, 237, 243, 0.16), transparent 70%); }
+      radial-gradient(ellipse 42% 70% at 86% 45%, rgba(247, 21, 171, 0.14), transparent 70%),
+      radial-gradient(ellipse 45% 65% at 0% 100%, rgba(52, 237, 243, 0.10), transparent 70%); }
   #how { background:
       radial-gradient(ellipse 45% 60% at 100% 50%, rgba(146, 1, 203, 0.14), transparent 70%),
       var(--bg-band); }
@@ -254,11 +254,11 @@
   /* Who am I */
   .bio {
     display: grid;
-    grid-template-columns: 1fr 260px;
+    grid-template-columns: 1fr 280px;
     gap: 48px;
     align-items: start;
   }
-  .bio p { font-size: 1.2rem; line-height: 1.7; max-width: 36em; }
+  .bio p { font-size: 1.2rem; line-height: 1.7; max-width: 42em; }
   .bio p + p { margin-top: 1.2em; }
   .bio-photo { display: block; }
   .bio-photo img {
@@ -598,7 +598,7 @@
 
   <!-- 3. Who I am -->
   <section class="block" id="about">
-    <div class="wrap block-grid">
+    <div class="wrap block-grid stacked">
       <p class="label reveal"><b>02</b>Who I am</p>
       <div class="bio">
         <div>
