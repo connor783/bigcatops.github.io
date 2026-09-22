@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /run/
+Sitemap: https://bigcatops.co.uk/sitemap.xml

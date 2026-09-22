@@ -1,0 +1,4 @@
+Inter (https://github.com/rsms/inter) and Sora (https://github.com/sora-xor/sora-font)
+are licensed under the SIL Open Font License, Version 1.1.
+Full licence text: https://openfontlicense.org/open-font-license-official-text/
+Files downloaded from Google Fonts (latin subset) on 22 September 2026.

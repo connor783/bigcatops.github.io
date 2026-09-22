@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found · Big Cat Operations</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#050816">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<style>
+  :root {
+    --bg: #050816;
+    --text: #EAF2FF;
+    --grey: #7D8597;
+    --violet: #9201CB;
+    --cyan: #34EDF3;
+    --cerise: #F715AB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { height: 100%; background: var(--bg); }
+  body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right))
+             max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mark { width: 96px; height: auto; margin-bottom: 36px; }
+  .code {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--grey);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  p.lede { color: var(--grey); max-width: 30em; line-height: 1.6; margin-bottom: 36px; }
+  .button {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1px solid var(--cyan);
+    border-radius: 4px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .button:hover, .button:focus-visible { background: var(--cyan); color: var(--bg); }
+  .button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+  .rule {
+    width: 60px;
+    height: 2px;
+    margin: 36px auto 0;
+    background: linear-gradient(90deg, var(--violet), var(--cyan), var(--cerise));
+    border: none;
+  }
+</style>
+</head>
+<body>
+  <picture>
+    <source srcset="/assets/mark-gradient.webp" type="image/webp">
+    <img class="mark" src="/assets/mark-gradient.png" width="1209" height="1400" alt="">
+  </picture>
+  <p class="code">404</p>
+  <h1>This page doesn't exist.</h1>
+  <p class="lede">It may have moved, or the link may be wrong. Everything on the site is on one page.</p>
+  <a class="button" href="/">Back to Big Cat Operations</a>
+  <hr class="rule">
+</body>
+</html>
