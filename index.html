@@ -503,9 +503,15 @@
     .services { grid-template-columns: 1fr; }
     .projects { grid-template-columns: 1fr; }
     .hero { min-height: auto; padding: 88px 0 72px; }
-    .hero-mark { top: -130px; left: auto; right: -84px; height: 250px; opacity: 0.55; }
-    .js .hero-mark.in { opacity: 0.55; }
-    .hero { padding-top: 136px; }
+    /* Phones: the cat sits behind the text as a large watermark, bleeding off
+       the right edge, faded enough that the words stay easy to read */
+    .hero { padding-top: 96px; overflow: clip; }
+    .hero-mark { top: 50%; bottom: auto; left: auto; right: -96px; height: 440px; transform: translateY(-50%); opacity: 0.32; pointer-events: none; }
+    .js .hero-mark, .js .hero-mark.in { transform: translateY(-50%); }
+    .js .hero-mark.in { opacity: 0.32; }
+    .hero { background:
+        radial-gradient(ellipse 70% 45% at 90% 50%, rgba(146, 1, 203, 0.22), transparent 70%),
+        radial-gradient(ellipse 60% 30% at 0% 90%, rgba(52, 237, 243, 0.08), transparent 70%); }
     .pains li { font-size: 1.05rem; padding-left: 36px; }
     .steps li { padding-left: 52px; }
     .steps li::before { width: 32px; height: 32px; font-size: 0.85rem; }

@@ -53,6 +53,16 @@
     -webkit-user-select:none;
     touch-action:none;
   }
+  /* Landscape screens: grow to fill the window, keeping 16:9. Portrait keeps
+     the capped size above, since a full-height 16:9 game would be tiny. */
+  @media (orientation: landscape){
+    body{ padding:8px; }
+    #bco-game-root{ width:min(100%, calc((100dvh - 16px) * 16 / 9)); }
+  }
+  /* HTML overlays (HUD, menus, touch buttons) scale up with the game, so text
+     keeps its proportions on big screens. --ui-scale is set from JS; 1 at 960px. */
+  #hud, #progress-wrap, .overlay, #touch-controls{ zoom: var(--ui-scale, 1); }
+
   #game-canvas{
     position:absolute;
     inset:0;
@@ -319,18 +329,6 @@
   #bco-game-root.compact #tbtn-right{ left:64px; }
   #bco-game-root.compact #tbtn-jump{ width:54px; height:54px; right:10px; }
 
-  .credit{
-    position:absolute;
-    bottom:8px;
-    left:0; right:0;
-    text-align:center;
-    font-size:9px;
-    letter-spacing:1px;
-    color:rgba(155,163,196,0.5);
-    font-family:'Inter',sans-serif;
-    pointer-events:none;
-    z-index:4;
-  }
 
   /* Compact mode: engaged by JS when the shell is too short (e.g. a 16:9
      embed on a tall phone) for the full start/win/over copy to fit. */
@@ -424,7 +422,6 @@
     <div class="tbtn" id="tbtn-jump">&uarr;</div>
   </div>
 
-  <div class="credit">Big Cat Operations &middot; gets harder the more yarn you collect &middot; 175 yarn and the chair appears</div>
 </div>
 
 <script>
@@ -494,6 +491,17 @@
   // short) the overlay text can't all fit — compact it instead of clipping.
   function updateCompactMode(){
     root.classList.toggle('compact', root.clientHeight < 280);
+    root.style.setProperty('--ui-scale', Math.max(1, root.clientWidth / 960).toFixed(3));
+    resizeCanvas();
+  }
+  // The game world is always drawn in 960x540 units; the canvas backing store
+  // matches the on-screen size so it stays sharp when stretched.
+  function resizeCanvas(){
+    if(typeof canvas === 'undefined') return;
+    const dpr = window.devicePixelRatio || 1;
+    const w = Math.max(1, Math.round(root.clientWidth * dpr));
+    const h = Math.max(1, Math.round(root.clientHeight * dpr));
+    if(canvas.width !== w || canvas.height !== h){ canvas.width = w; canvas.height = h; }
   }
   if(window.ResizeObserver){
     new ResizeObserver(updateCompactMode).observe(root);
@@ -502,8 +510,9 @@
   }
   updateCompactMode();
 
-  const canvas = document.getElementById('game-canvas');
+  var canvas = document.getElementById('game-canvas');
   const ctx = canvas.getContext('2d');
+  resizeCanvas();
   const hud = document.getElementById('hud');
   const progressWrap = document.getElementById('progress-wrap');
   const progressBar = document.getElementById('progress-bar');
@@ -1632,6 +1641,7 @@
   //  MAIN DRAW
   // ============================================================
   function draw(){
+    ctx.setTransform(canvas.width / CW, 0, 0, canvas.height / CH, 0, 0);
     const camX = state.camera.x;
     drawBackground(camX);
 
@@ -1681,6 +1691,7 @@
 
   // initial idle background render + kick off loop
   initEndlessRun();
+  ctx.setTransform(canvas.width / CW, 0, 0, canvas.height / CH, 0, 0);
   drawBackground(0);
   drawGround();
   requestAnimationFrame(frame);

@@ -74,6 +74,13 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
   @media (hover: none) { .back kbd { display: none; } }
+  /* Short screens (a phone turned sideways): slim the bar so the game gets the height */
+  @media (max-height: 500px) {
+    .bar { padding-top: max(6px, env(safe-area-inset-top)); padding-bottom: 6px; }
+    .brand { display: none; }
+    .back { padding: 5px 12px; font-size: 0.8rem; }
+    .bar { justify-content: flex-end; }
+  }
 </style>
 </head>
 <body>
