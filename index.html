@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Big Cat Operations · Fractional COO for deep tech founders</title>
 <meta name="description" content="Fractional COO and operations support for deep tech founders, pre-seed to Series A. PhD scientist turned operator, proven scaling two companies at once from pre-incorporation to £10m+ raised.">
-<meta name="theme-color" content="#050816">
+<meta name="theme-color" content="#0A1128">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Big Cat Operations">
 <meta property="og:description" content="You're good at the science. I'm good at the operations.">
@@ -21,11 +21,12 @@
 <script>document.documentElement.classList.add('js');</script>
 <style>
   :root {
-    --bg: #050816;
-    --bg-raised: #0B1024;
-    --line: #1A2140;
-    --text: #EAF2FF;
-    --grey: #7D8597;
+    --bg: #0A1128;
+    --bg-band: #111B3A;
+    --bg-raised: #17224A;
+    --line: #202B52;
+    --text: #EEF1F6;
+    --grey: #8A93A6;
     --violet: #9201CB;
     --cyan: #34EDF3;
     --cerise: #F715AB;
@@ -140,6 +141,26 @@
     color: #C3CCDD;
   }
 
+  /* Alternating bands and soft brand glows, to break the page into distinct sections */
+  section.block.band { background: var(--bg-band); border-top-color: transparent; }
+  section.band + section, section + section.band { border-top-color: transparent; }
+  /* Stronger brand glows, in the style of the game background: violet and cyan pools of light */
+  .hero { background:
+      radial-gradient(ellipse 45% 60% at 82% 38%, rgba(146, 1, 203, 0.26), transparent 70%),
+      radial-gradient(ellipse 40% 50% at 0% 100%, rgba(52, 237, 243, 0.10), transparent 70%); }
+  #services { background:
+      radial-gradient(ellipse 50% 45% at 100% 0%, rgba(52, 237, 243, 0.14), transparent 70%),
+      radial-gradient(ellipse 45% 50% at 0% 100%, rgba(146, 1, 203, 0.16), transparent 70%),
+      var(--bg-band); }
+  #about { background:
+      radial-gradient(ellipse 42% 70% at 86% 45%, rgba(247, 21, 171, 0.20), transparent 70%),
+      radial-gradient(ellipse 40% 60% at 8% 20%, rgba(146, 1, 203, 0.12), transparent 70%); }
+  #how { background:
+      radial-gradient(ellipse 45% 60% at 100% 50%, rgba(146, 1, 203, 0.14), transparent 70%),
+      var(--bg-band); }
+  .cta-block { background:
+      radial-gradient(ellipse 50% 60% at 50% 30%, rgba(52, 237, 243, 0.08), transparent 70%); }
+
   /* Sections */
   section.block { padding: 96px 0; border-top: 1px solid var(--line); }
   .block-grid {
@@ -248,6 +269,71 @@
     box-shadow: 0 0 0 1px var(--line), 0 24px 60px rgba(0, 0, 0, 0.45);
   }
 
+  /* What I do: project cards */
+  .block-grid.stacked { grid-template-columns: 1fr; gap: 0; }
+  .block-grid.stacked .label { margin-bottom: 14px; padding-top: 0; }
+  .block-grid.stacked h2 { max-width: none; margin-bottom: 32px; }
+  .projects {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .project {
+    background: var(--bg);
+    padding: 30px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s ease;
+  }
+  .project:hover { background: var(--bg-raised); }
+  .project::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 2px;
+    margin-bottom: 20px;
+    background: var(--accent, var(--cyan));
+    transition: width 0.35s ease;
+  }
+  .project:hover::before { width: 56px; }
+  .project:nth-child(1) { --accent: var(--cyan); }
+  .project:nth-child(2) { --accent: var(--cerise); }
+  .project:nth-child(3) { --accent: var(--orange); }
+  .project:nth-child(4) { --accent: var(--lime); }
+  .project-problem { color: var(--grey); font-size: 0.98rem; line-height: 1.55; margin-bottom: 14px; }
+  .project h3 {
+    font-family: var(--heading);
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .project ul { list-style: none; display: grid; gap: 8px; margin-bottom: 22px; }
+  .project li { position: relative; padding-left: 20px; font-size: 0.98rem; line-height: 1.5; }
+  .project li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 8px;
+    height: 2px;
+    background: var(--accent, var(--cyan));
+  }
+  .projects-more { grid-column: 1 / -1; color: var(--grey); font-size: 0.98rem; margin-top: 24px; }
+  .projects-more a { color: var(--text); text-decoration: underline; text-decoration-color: var(--cyan); text-underline-offset: 3px; }
+  .projects-more a:hover { color: var(--cyan); }
+  .project-terms {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    color: var(--grey);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
   /* How it works */
   .steps { list-style: none; counter-reset: step; display: grid; gap: 0; }
   .steps li {
@@ -311,7 +397,32 @@
   .case p { color: var(--grey); font-size: 1rem; }
 
   /* CTA */
-  .cta-block { padding: 128px 0 112px; border-top: 1px solid var(--line); text-align: center; }
+  .cta-block { padding: 112px 0 104px; border-top: 1px solid var(--line); text-align: center; }
+  /* The CTA sits in its own panel with a thin brand-gradient edge, so the page ends on something with weight */
+  .cta-panel {
+    position: relative;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 72px 56px 56px;
+    border-radius: 14px;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(146, 1, 203, 0.34), transparent 70%),
+      var(--bg-band);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 0 120px rgba(146, 1, 203, 0.18);
+  }
+  .cta-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(120deg, var(--violet), var(--cyan), var(--cerise));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.7;
+    pointer-events: none;
+  }
   .cta-block h2 { margin: 0 auto 20px; max-width: 20ch; }
   .cta-block p { color: var(--grey); max-width: 32em; margin: 0 auto 40px; }
   .cta-block p:has(+ .cta-aside) { margin-bottom: 16px; }
@@ -390,6 +501,7 @@
     .block-grid { grid-template-columns: 1fr; gap: 20px; }
     section.block { padding: 72px 0; }
     .services { grid-template-columns: 1fr; }
+    .projects { grid-template-columns: 1fr; }
     .hero { min-height: auto; padding: 88px 0 72px; }
     .hero-mark { top: -130px; left: auto; right: -84px; height: 250px; opacity: 0.55; }
     .js .hero-mark.in { opacity: 0.55; }
@@ -397,7 +509,8 @@
     .pains li { font-size: 1.05rem; padding-left: 36px; }
     .steps li { padding-left: 52px; }
     .steps li::before { width: 32px; height: 32px; font-size: 0.85rem; }
-    .cta-block { padding: 96px 0 88px; }
+    .cta-block { padding: 72px 0 72px; }
+    .cta-panel { padding: 48px 22px 40px; }
   }
 </style>
 </head>
@@ -430,64 +543,68 @@
     </div>
   </section>
 
-  <!-- 2. Where I can help -->
-  <section class="block" id="help">
-    <div class="wrap block-grid">
-      <p class="label reveal"><b>01</b>Where I can help</p>
-      <div>
-        <h2 class="reveal">Sound familiar?</h2>
-        <ul class="pains">
-          <li class="reveal">The science or product is ahead of the commercial story the board needs</li>
-          <li class="reveal">Deciding whether a grant is worth chasing when cash is already tight</li>
-          <li class="reveal">Your IP isn't yet a story an investor can underwrite</li>
-          <li class="reveal">Operations outpacing process; no time to fix the machine</li>
-          <li class="reveal">A raise, bid, or diligence process looming and the data room is not ready</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. What I do -->
-  <section class="block" id="services">
-    <div class="wrap block-grid">
-      <p class="label reveal"><b>02</b>What I do</p>
-      <div>
-        <h2 class="reveal">Hands on, from a single project to an embedded role.</h2>
-        <div class="services">
-          <article class="service reveal">
+  <!-- 2. What I do: problem, project, what you get, typical length.
+  -->
+  <section class="block band" id="services">
+    <div class="wrap block-grid stacked">
+      <p class="label reveal"><b>01</b>What I do</p>
+      <h2 class="reveal">Does any of this sound familiar?</h2>
+      <div class="projects">
+          <article class="project reveal">
+            <p class="project-problem">Operations are outpacing process, and the same bottlenecks keep coming back.</p>
             <h3>Operational foundations</h3>
-            <p>Finance, systems, governance and hiring, built to hold up as you scale.</p>
+            <ul>
+              <li>Finance, systems and reporting that give you a clear view of the business</li>
+              <li>Governance that works: board packs, decision rights and a regular operating rhythm</li>
+              <li>Bottlenecks found and removed, from project delivery to decision-making</li>
+              <li>A hiring plan and process for the next stage</li>
+            </ul>
+            <p class="project-terms">Typically 6 to 10 weeks · fixed fee</p>
           </article>
-          <article class="service reveal" style="--delay:.08s">
-            <h3>Fundraising and investor readiness</h3>
-            <p>The roadmap, the financial model, the data room, the story that survives diligence.</p>
+          <article class="project reveal" style="--delay:.08s">
+            <p class="project-problem">A raise or diligence process is looming, and the science is ahead of the story investors need.</p>
+            <h3>Investor readiness</h3>
+            <ul>
+              <li>A financial model investors can interrogate</li>
+              <li>A data room that stands up to diligence</li>
+              <li>The roadmap and commercial story, with your IP framed as something an investor can underwrite</li>
+            </ul>
+            <p class="project-terms">Typically 4 to 6 weeks · fixed fee</p>
           </article>
-          <article class="service reveal">
-            <h3>Grants and non-dilutive funding</h3>
-            <p>From a single bid to an ongoing pipeline.</p>
+          <article class="project reveal">
+            <p class="project-problem">You're deciding whether a grant is worth chasing when cash is already tight.</p>
+            <h3>Grant funding</h3>
+            <ul>
+              <li>A clear go or no-go on the grants worth your time</li>
+              <li>Bids written or reviewed, with the budget and project plan to back them up</li>
+              <li>A pipeline of future calls, so funding isn't a scramble every time</li>
+            </ul>
+            <p class="project-terms">Per bid, or as an ongoing pipeline · fixed fee</p>
           </article>
-          <article class="service reveal" style="--delay:.08s">
-            <h3>Fractional COO / Chief of Staff</h3>
-            <p>Embedded, running the ground you can't.</p>
+          <article class="project reveal" style="--delay:.08s">
+            <p class="project-problem">You need a plan the whole team can work to, and the runway to deliver it.</p>
+            <h3>Strategy and planning</h3>
+            <ul>
+              <li>A strategic plan with clear priorities and owners</li>
+              <li>A runway plan, with costs and funding lined up to reach the next milestone</li>
+              <li>A plan for putting new funding to work after a raise</li>
+            </ul>
+            <p class="project-terms">Typically 3 to 6 weeks, often starting with a strategy workshop · fixed fee</p>
           </article>
-          <article class="service reveal">
-            <h3>Discrete high-stakes projects</h3>
-            <p>The one thing that needs a senior pair of hands right now.</p>
-          </article>
-        </div>
       </div>
+      <p class="projects-more reveal">Something else that needs a senior pair of hands? <a href="#contact">Get in touch.</a></p>
     </div>
   </section>
 
-  <!-- 4. Who am I -->
+  <!-- 3. Who I am -->
   <section class="block" id="about">
     <div class="wrap block-grid">
-      <p class="label reveal"><b>03</b>Who I am</p>
+      <p class="label reveal"><b>02</b>Who I am</p>
       <div class="bio">
         <div>
           <h2 class="reveal">Connor Frapwell</h2>
           <p class="reveal">I've worked in company operations and chief of staff functions since 2020. As COO of STL Tech, I transformed it from a hardware/software consultancy into a full-stack deep tech venture builder, working with clients across life sciences, quantum, robotics, and defence. Alongside that, I co-founded Delta.g, a quantum sensing business, scaling it from pre-incorporation to £10m+ raised.</p>
-          <p class="reveal">Along the way I got a Maine Coon (hence Big Cat), became a dad, and recorded drums and released a metal album.</p>
+          <p class="reveal">Along the way I got a Maine Coon (hence Big Cat), became a dad, and recorded drums for a metal album.</p>
         </div>
         <picture class="bio-photo reveal">
           <source srcset="assets/connor.webp" type="image/webp">
@@ -497,10 +614,10 @@
     </div>
   </section>
 
-  <!-- 5. How it works -->
-  <section class="block" id="how">
+  <!-- 4. How it works -->
+  <section class="block band" id="how">
     <div class="wrap block-grid">
-      <p class="label reveal"><b>04</b>How it works</p>
+      <p class="label reveal"><b>03</b>How it works</p>
       <div>
         <h2 class="reveal">What working together looks like</h2>
         <ol class="steps">
@@ -514,7 +631,7 @@
           </li>
           <li class="reveal">
             <h3>Fix it</h3>
-            <p>Usually a defined project for a fixed fee, so you know the cost up front. If you need someone embedded afterwards, I can stay on in an ongoing role, typically up to a day a week and reviewed monthly.</p>
+            <p>Usually a defined project for a fixed fee, so you know the cost up front. If you need someone embedded afterwards, I can stay on as your fractional COO or chief of staff, typically up to a day a week and reviewed monthly.</p>
           </li>
         </ol>
         <p class="steps-note reveal">Pre-seed to Series A. Based in Bristol, working with UK teams remotely or on site.</p>
@@ -522,11 +639,12 @@
     </div>
   </section>
 
-  <!-- 6. CTA -->
+  <!-- 5. CTA -->
   <section class="cta-block" id="contact">
     <div class="wrap">
+      <div class="cta-panel">
       <h2 class="reveal">If you're struggling with any of this, I'd like to help.</h2>
-      <p class="reveal">Tell me what you're working on and what's getting in the way. We can work out together whether I'm the right fit.</p>
+      <p class="reveal">Book a free 30-minute call to talk through what's getting in the way. We'll work out together whether I'm the right fit.</p>
       <p class="cta-aside reveal">Most of my work is with science and deep tech founders, but the operational problems look much the same in any early-stage company. If you're building something else, the same offer stands.</p>
       <div class="cta-buttons reveal">
         <!-- BOOKING LINK: Google Calendar appointment schedule (30-minute intro call) -->
@@ -535,6 +653,7 @@
       </div>
       <hr class="cta-rule">
       <p class="cta-links"><a href="mailto:connor@bigcatops.co.uk">connor@bigcatops.co.uk</a><span aria-hidden="true">·</span><a href="https://www.linkedin.com/in/connor-frapwell" rel="me noopener">LinkedIn</a></p>
+      </div>
     </div>
   </section>
 
